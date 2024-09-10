@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.claw.Claw;
 import org.firstinspires.ftc.teamcode.subsystems.example.ExampleClaw;
 import org.firstinspires.ftc.teamcode.subsystems.lift.Lift;
+import org.firstinspires.ftc.teamcode.subsystems.starterClaw.StarterClaw;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -31,7 +32,7 @@ public class VLRTeleOp extends VLRLinearOpMode {
 
     @Override
     public void run() {
-        VLRSubsystem.requireSubsystems(Claw.class, Lift.class, ExampleClaw.class);
+        VLRSubsystem.requireSubsystems(Claw.class, Lift.class, ExampleClaw.class, StarterClaw.class);
         VLRSubsystem.initializeAll(hardwareMap);
 
         executorService = Executors.newCachedThreadPool();

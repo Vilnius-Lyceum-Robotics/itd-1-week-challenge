@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.subsystems.claw.commands.ClawToggleCommand
 import org.firstinspires.ftc.teamcode.subsystems.example.ExampleClaw;
 import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftRunToPositionCommand;
 import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftToggleCommand;
+import org.firstinspires.ftc.teamcode.subsystems.starterClaw.StarterClaw;
 
 /**
  * Abstraction for primary driver controls. All controls will be defined here.
@@ -24,8 +25,11 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
         CommandScheduler cs = CommandScheduler.getInstance();
 
         ExampleClaw exampleClaw = VLRSubsystem.getInstance(ExampleClaw.class);
+        StarterClaw starterClaw = VLRSubsystem.getInstance(StarterClaw.class);
 
         add(new ButtonCtl(GamepadKeys.Button.X, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean x) -> exampleClaw.open()));
         add(new ButtonCtl(GamepadKeys.Button.Y, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean y) -> exampleClaw.close()));
+        add(new ButtonCtl(GamepadKeys.Button.A, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> starterClaw.toggle()));
+
     }
 }

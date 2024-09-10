@@ -28,7 +28,7 @@ public class Lift extends VLRSubsystem<Lift> implements LiftConfiguration {
     public double getPosition() {
         return liftMotor.getCurrentPosition();
     }
-// what
+
     public double getTargetPosition() {
         return liftMotor.motor.getTargetPosition();
     }

@@ -7,7 +7,9 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.helpers.controls.DriverControls;
 import org.firstinspires.ftc.teamcode.helpers.controls.button.ButtonCtl;
+import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.claw.commands.ClawToggleCommand;
+import org.firstinspires.ftc.teamcode.subsystems.example.ExampleClaw;
 import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftRunToPositionCommand;
 import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftToggleCommand;
 
@@ -21,8 +23,9 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
 
         CommandScheduler cs = CommandScheduler.getInstance();
 
-        add(new ButtonCtl(GamepadKeys.Button.LEFT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean lb) -> cs.schedule(new ClawToggleCommand())));
-        add(new ButtonCtl(GamepadKeys.Button.RIGHT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean rb) -> cs.schedule(new LiftToggleCommand())));
-        add(new ButtonCtl(GamepadKeys.Button.A, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean a) -> cs.schedule(new LiftRunToPositionCommand(5000))));
+        ExampleClaw exampleClaw = VLRSubsystem.getInstance(ExampleClaw.class);
+
+        add(new ButtonCtl(GamepadKeys.Button.X, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean x) -> exampleClaw.open()));
+        add(new ButtonCtl(GamepadKeys.Button.Y, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean y) -> exampleClaw.close()));
     }
 }

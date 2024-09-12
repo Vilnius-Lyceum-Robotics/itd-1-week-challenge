@@ -13,8 +13,10 @@ import org.firstinspires.ftc.teamcode.subsystems.example.ExampleClaw;
 import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftRunToPositionCommand;
 import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftToggleCommand;
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.StarterClaw;
+import org.firstinspires.ftc.teamcode.subsystems.mainArm.MainArm;
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.commands.StarterClawLoadCommand;
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.commands.StarterClawReleaseCommand;
+
 
 /**
  * Abstraction for primary driver controls. All controls will be defined here.
@@ -26,16 +28,17 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
 
         CommandScheduler cs = CommandScheduler.getInstance();
 
-        //ExampleClaw exampleClaw = VLRSubsystem.getInstance(ExampleClaw.class);
         StarterClaw starterClaw = VLRSubsystem.getInstance(StarterClaw.class);
+        MainArm mainArm = VLRSubsystem.getInstance(MainArm.class);
 
-        /*
-        add(new ButtonCtl(GamepadKeys.Button.X, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean x) -> exampleClaw.open()))
-        add(new ButtonCtl(GamepadKeys.Button.Y, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean y) -> exampleClaw.close()))
-        */
         add(new ButtonCtl(GamepadKeys.Button.A, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> starterClaw.toggle()));
         add(new ButtonCtl(GamepadKeys.Button.Y, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean y) -> cs.schedule(new StarterClawReleaseCommand())));
         add(new ButtonCtl(GamepadKeys.Button.X, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean x) -> cs.schedule(new StarterClawLoadCommand())));
+
+        add(new ButtonCtl(GamepadKeys.Button.RIGHT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> mainArm.moveScoring()));
+        add(new ButtonCtl(GamepadKeys.Button.LEFT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) ->  mainArm.moveClearBarrier()));
+        add(new ButtonCtl(GamepadKeys.Button.DPAD_DOWN, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> mainArm.moveCollectSample()));
+        add(new ButtonCtl(GamepadKeys.Button.DPAD_LEFT, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> mainArm.attachHook()));
 
     }
 }

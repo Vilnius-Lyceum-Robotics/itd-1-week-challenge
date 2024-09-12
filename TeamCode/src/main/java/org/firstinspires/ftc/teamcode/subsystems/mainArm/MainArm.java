@@ -31,6 +31,9 @@ public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfigurati
 
     public void attachHook(){
         moveToDeg(ARM_ATTACH_HANGING_HOOK);
+    }
+
+    public void liftRobot(){
         moveToDeg(ARM_LIFT_ROBOT);
     }
 

@@ -11,26 +11,26 @@ public class StarterClaw extends VLRSubsystem<StarterClaw> implements StarterCla
     CRServo intakeServo;
     @Override
     protected void initialize(HardwareMap hardwareMap) {
-        specimenServo = new SimpleServo(hardwareMap, SERVO, MIN_SERVO_DEGREE, MAX_SERVO_DEGREE);
-        intakeServo = hardwareMap.get(CRServo.class, CRSERVO);
-        specimenServo.turnToAngle(DEFAULT_SERVO_POSITION);
+        specimenServo = new SimpleServo(hardwareMap, SPECIMEN_SERVO, MIN_SPECIMEN_SERVO_DEGREE, MAX_SPECIMEN_SERVO_DEGREE);
+        intakeServo = hardwareMap.get(CRServo.class, INTAKE_CRSERVO);
+        specimenServo.turnToAngle(DEFAULT_SPECIMEN_SERVO_POSITION);
         intakeServo.setPower(INTAKE_OFF);
 
     }
 
     public void turn() {
-        specimenServo.turnToAngle(MAX_SERVO_DEGREE);
+        specimenServo.turnToAngle(MAX_SPECIMEN_SERVO_DEGREE);
     }
 
     public void revert() {
-        specimenServo.turnToAngle(DEFAULT_SERVO_POSITION);
+        specimenServo.turnToAngle(DEFAULT_SPECIMEN_SERVO_POSITION);
     }
 
     public Boolean isTurned() {
-        return specimenServo.getAngle() == MAX_SERVO_DEGREE;
+        return specimenServo.getAngle() == MAX_SPECIMEN_SERVO_DEGREE;
     }
 
-    public void toggle() {
+    public void toggleSpecimen() {
         if(this.isTurned()) {
             revert();
         } else
@@ -50,5 +50,13 @@ public class StarterClaw extends VLRSubsystem<StarterClaw> implements StarterCla
     public void stop() {
         intakeServo.setPower(INTAKE_OFF);
 
+    }
+
+    public void toggleIntakeLoad() {
+        if (intakeServo.getPower() == INTAKE_LOAD) {
+            this.stop();
+        } else {
+            this.load();
+        }
     }
 }

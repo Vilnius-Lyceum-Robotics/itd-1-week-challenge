@@ -12,6 +12,7 @@ public class StarterClawReleaseCommand extends CommandBase {
     public StarterClawReleaseCommand() {
         starterClaw = VLRSubsystem.getInstance(StarterClaw.class);
         this.startTime = System.currentTimeMillis();
+        addRequirements(starterClaw);
     }
 
     public void initialize() {

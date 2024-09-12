@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftRunToPosition
 import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftToggleCommand;
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.StarterClaw;
 import org.firstinspires.ftc.teamcode.subsystems.mainArm.MainArm;
-import org.firstinspires.ftc.teamcode.subsystems.starterClaw.commands.StarterClawLoadCommand;
+
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.commands.StarterClawReleaseCommand;
 
 
@@ -31,9 +31,9 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
         StarterClaw starterClaw = VLRSubsystem.getInstance(StarterClaw.class);
         MainArm mainArm = VLRSubsystem.getInstance(MainArm.class);
 
-        add(new ButtonCtl(GamepadKeys.Button.A, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> starterClaw.toggle()));
+        add(new ButtonCtl(GamepadKeys.Button.A, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> starterClaw.toggleSpecimen()));
         add(new ButtonCtl(GamepadKeys.Button.Y, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean y) -> cs.schedule(new StarterClawReleaseCommand())));
-        add(new ButtonCtl(GamepadKeys.Button.X, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean x) -> cs.schedule(new StarterClawLoadCommand())));
+        add(new ButtonCtl(GamepadKeys.Button.X, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean x) -> starterClaw.toggleIntakeLoad()));
 
         add(new ButtonCtl(GamepadKeys.Button.RIGHT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean rb) -> mainArm.moveScoring()));
         add(new ButtonCtl(GamepadKeys.Button.LEFT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean lb) ->  mainArm.moveClearBarrier()));

@@ -11,11 +11,10 @@ public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfigurati
     @Override
     protected void initialize(HardwareMap hardwareMap) {
         armMotor = new Motor(hardwareMap, MOTOR, Motor.GoBILDA.RPM_117);
-        armMotor.setTargetPosition(0);
+        armMotor.setTargetPosition((int)ARM_COLLAPSED_INTO_ROBOT);
         armMotor.setRunMode(Motor.RunMode.PositionControl);
-        armMotor.setPositionTolerance(15);
+        armMotor.setPositionTolerance(POSITION_TOLERANCE);
         armMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
-        armMotor.stopMotor(); // ar reikalingas?
     }
 
     public void moveScoring(){
@@ -38,9 +37,6 @@ public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfigurati
 
     private void moveToDeg(double motorTargetDegrees){
         armMotor.setTargetPosition((int)motorTargetDegrees);
-        while (!armMotor.atTargetPosition()) {
-            armMotor.set(MOTOR_POWER);
-        }
-        armMotor.stopMotor();
+        armMotor.set(MOTOR_POWER);
     }
 }

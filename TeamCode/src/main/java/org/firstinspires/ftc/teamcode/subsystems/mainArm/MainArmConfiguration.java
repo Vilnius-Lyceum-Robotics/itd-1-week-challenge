@@ -1,7 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems.mainArm;
 
-import com.acmerobotics.dashboard.config.Config; //what?why?
+import com.acmerobotics.dashboard.config.Config;
 
+@Config
 public interface MainArmConfiguration {
     String MOTOR = "armMotor";
     double MOTOR_POWER = 1; //fuck it, we ball
@@ -27,6 +28,7 @@ public interface MainArmConfiguration {
 
     /* A number in degrees that the triggers can adjust the arm position by */
     double FUDGE_FACTOR = 15 * ARM_TICKS_PER_DEGREE;
+    double POSITION_TOLERANCE = 15;
 
     double ARM_COLLAPSED_INTO_ROBOT  = 0;
     double ARM_COLLECT               = 250 * ARM_TICKS_PER_DEGREE;

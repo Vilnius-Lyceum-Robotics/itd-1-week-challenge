@@ -37,6 +37,9 @@ public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfigurati
         moveToDeg(ARM_LIFT_ROBOT);
     }
 
+    public void finePositionAdjustment(double triggerInput){
+
+    }
 
     private void moveToDeg(double motorTargetDegrees){
         armMotor.setTargetPosition((int)motorTargetDegrees);

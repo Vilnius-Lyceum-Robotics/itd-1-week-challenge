@@ -7,11 +7,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.helpers.controls.DriverControls;
 import org.firstinspires.ftc.teamcode.helpers.controls.button.ButtonCtl;
+import org.firstinspires.ftc.teamcode.helpers.controls.trigger.TriggerCtl;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
-import org.firstinspires.ftc.teamcode.subsystems.claw.commands.ClawToggleCommand;
-import org.firstinspires.ftc.teamcode.subsystems.example.ExampleClaw;
-import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftRunToPositionCommand;
-import org.firstinspires.ftc.teamcode.subsystems.lift.commands.LiftToggleCommand;
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.StarterClaw;
 import org.firstinspires.ftc.teamcode.subsystems.mainArm.MainArm;
 
@@ -40,5 +37,8 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
         add(new ButtonCtl(GamepadKeys.Button.DPAD_DOWN, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean dp_d) -> mainArm.moveCollectSample()));
         add(new ButtonCtl(GamepadKeys.Button.DPAD_LEFT, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean dp_l) -> mainArm.attachHook()));
         add(new ButtonCtl(GamepadKeys.Button.DPAD_RIGHT, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean dp_r) -> mainArm.liftRobot()));
+
+        add(new TriggerCtl(GamepadKeys.Trigger.LEFT_TRIGGER, (Double lt) -> mainArm.finePositionAdjustment(lt)));
+
     }
 }

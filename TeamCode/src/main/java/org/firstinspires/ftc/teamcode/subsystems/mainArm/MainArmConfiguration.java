@@ -6,6 +6,7 @@ import com.acmerobotics.dashboard.config.Config;
 public interface MainArmConfiguration {
     String MOTOR = "armMotor";
     double MOTOR_POWER = 1; //fuck it, we ball
+    double MOTOR_ADJUSTMENT_POWER = 0.2;
 
     // dalis copy-paste is goBILDA
 

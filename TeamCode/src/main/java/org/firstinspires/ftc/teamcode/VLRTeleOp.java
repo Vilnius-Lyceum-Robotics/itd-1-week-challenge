@@ -30,7 +30,7 @@ public class VLRTeleOp extends VLRLinearOpMode {
 
     @Override
     public void run() {
-        VLRSubsystem.requireSubsystems(StarterClaw.class, MainArm.class);
+        VLRSubsystem.requireSubsystems(Chassis.class, StarterClaw.class, MainArm.class);
         VLRSubsystem.initializeAll(hardwareMap);
 
         executorService = Executors.newCachedThreadPool();

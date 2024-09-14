@@ -35,8 +35,6 @@ public class StarterClaw extends VLRSubsystem<StarterClaw> implements StarterCla
             revert();
         } else
             turn();
-
-
     }
 
     public void release() {

@@ -15,6 +15,7 @@ public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfigurati
         armMotor.setRunMode(Motor.RunMode.PositionControl);
         armMotor.setPositionTolerance(POSITION_TOLERANCE);
         armMotor.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+        armMotor.resetEncoder();
     }
 
     public void moveScoring(){
@@ -35,10 +36,6 @@ public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfigurati
 
     public void liftRobot(){
         moveToDeg(ARM_LIFT_ROBOT);
-    }
-
-    public void finePositionAdjustment(double triggerInput){
-
     }
 
     private void moveToDeg(double motorTargetDegrees){

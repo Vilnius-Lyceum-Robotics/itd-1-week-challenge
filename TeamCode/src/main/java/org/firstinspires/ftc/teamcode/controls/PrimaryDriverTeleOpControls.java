@@ -45,6 +45,7 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
         addBothSticksHandler(
                 (Double leftY, Double leftX, Double rightY, Double rightX) -> {
                     chassis.drive(leftX, leftY, rightX);
+                    System.out.println("-----------------------BOTH STICKS HANDLER INVOKED-----------------------");
                 }
         );
         // add(new TriggerCtl(GamepadKeys.Trigger.LEFT_TRIGGER, (Double lt) -> mainArm.finePositionAdjustment(lt)));

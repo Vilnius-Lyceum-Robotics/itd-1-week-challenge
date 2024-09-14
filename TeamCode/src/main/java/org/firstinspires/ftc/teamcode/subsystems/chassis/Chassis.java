@@ -34,7 +34,14 @@ public class Chassis extends VLRSubsystem<Chassis> implements ChassisConfigurati
     }
 
     public void drive(Pose2d positionVector){
-        MecanumDriveController driveController = new MecanumDriveController(positionVector);
+        this.driveMotors(new MecanumDriveController(positionVector));
+    }
+
+    public void drive(double xSpeed, double ySpeed, double zRotation){
+        this.driveMotors(new MecanumDriveController(xSpeed, ySpeed, zRotation));
+    }
+
+    private void driveMotors(MecanumDriveController driveController){
         driveController.normalize(1.0);
 
         MotorLeftFront.set(driveController.frontLeftMetersPerSecond * motorPower);

@@ -16,4 +16,14 @@ public class MecanumDriveController extends MecanumDriveWheelSpeeds implements M
                 vectorPosition.getX() - vectorPosition.getY() + ( 2 * BASE_TRACK_RADIUS * vectorPosition.getHeading())
         );
     }
+    public MecanumDriveController(
+            double xSpeed, double ySpeed, double zRotation
+    ){
+        super(
+                xSpeed - ySpeed - ( 2 * BASE_TRACK_RADIUS * zRotation),
+                xSpeed + ySpeed + ( 2 * BASE_TRACK_RADIUS * zRotation),
+                xSpeed + ySpeed - ( 2 * BASE_TRACK_RADIUS * zRotation),
+                xSpeed - ySpeed + ( 2 * BASE_TRACK_RADIUS * zRotation)
+        );
+    }
 }

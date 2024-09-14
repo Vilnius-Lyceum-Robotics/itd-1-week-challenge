@@ -31,6 +31,12 @@ public class DriverControls {
     BiConsumer<Double, Double> rightStickHandler;
 
     /**
+     * Handler for both sticks input.
+     */
+    QuadConsumer<Double, Double, Double, Double> bothSticksHandler;
+
+
+    /**
      * Constructs a DriverControls object.
      *
      * @param gamepad The extended gamepad object to use for controls.
@@ -66,6 +72,10 @@ public class DriverControls {
         rightStickHandler = control;
     }
 
+    public void addBothSticksHandler(QuadConsumer<Double, Double, Double, Double> control) {
+        bothSticksHandler = control;
+    }
+
     /**
      * Updates all controls and executes their associated actions.
      * This method should be called in the main control loop.
@@ -75,6 +85,9 @@ public class DriverControls {
             leftStickHandler.accept(gamepad.getLeftY(), gamepad.getLeftX());
         if (rightStickHandler != null)
             rightStickHandler.accept(gamepad.getRightY(), gamepad.getRightX());
+        if (bothSticksHandler != null)
+            bothSticksHandler.accept(gamepad.getLeftY(), gamepad.getLeftX(), gamepad.getRightY(), gamepad.getRightX());
+
 
         for (ControlDefinition control : controls) {
             control.run(gamepad);

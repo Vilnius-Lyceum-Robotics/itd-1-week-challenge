@@ -3,14 +3,17 @@ package org.firstinspires.ftc.teamcode.controls;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.geometry.Rotation2d;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
+import org.firstinspires.ftc.teamcode.auto.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.helpers.controls.DriverControls;
 import org.firstinspires.ftc.teamcode.helpers.controls.button.ButtonCtl;
 import org.firstinspires.ftc.teamcode.helpers.controls.trigger.TriggerCtl;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.StarterClaw;
 import org.firstinspires.ftc.teamcode.subsystems.mainArm.MainArm;
+import org.firstinspires.ftc.teamcode.subsystems.chassis.Chassis;
 
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.commands.StarterClawReleaseCommand;
 
@@ -27,6 +30,7 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
 
         StarterClaw starterClaw = VLRSubsystem.getInstance(StarterClaw.class);
         MainArm mainArm = VLRSubsystem.getInstance(MainArm.class);
+        Chassis chassis = VLRSubsystem.getInstance(Chassis.class);
 
         add(new ButtonCtl(GamepadKeys.Button.A, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> starterClaw.toggleSpecimen()));
         add(new ButtonCtl(GamepadKeys.Button.Y, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean y) -> cs.schedule(new StarterClawReleaseCommand())));
@@ -38,6 +42,11 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
         add(new ButtonCtl(GamepadKeys.Button.DPAD_LEFT, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean dp_l) -> mainArm.attachHook()));
         add(new ButtonCtl(GamepadKeys.Button.DPAD_RIGHT, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean dp_r) -> mainArm.liftRobot()));
 
+        addBothSticksHandler(
+                (Double leftY, Double leftX, Double rightY, Double rightX) -> {
+                    chassis.drive(leftX, leftY, rightX);
+                }
+        );
         // add(new TriggerCtl(GamepadKeys.Trigger.LEFT_TRIGGER, (Double lt) -> mainArm.finePositionAdjustment(lt)));
 
     }

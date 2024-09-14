@@ -81,12 +81,14 @@ public class DriverControls {
      * This method should be called in the main control loop.
      */
     public void update() {
-        if (leftStickHandler != null)
-            leftStickHandler.accept(gamepad.getLeftY(), gamepad.getLeftX());
-        if (rightStickHandler != null)
-            rightStickHandler.accept(gamepad.getRightY(), gamepad.getRightX());
         if (bothSticksHandler != null)
             bothSticksHandler.accept(gamepad.getLeftY(), gamepad.getLeftX(), gamepad.getRightY(), gamepad.getRightX());
+        else{
+            if (leftStickHandler != null)
+                leftStickHandler.accept(gamepad.getLeftY(), gamepad.getLeftX());
+            if (rightStickHandler != null)
+                rightStickHandler.accept(gamepad.getRightY(), gamepad.getRightX());
+        }
 
 
         for (ControlDefinition control : controls) {

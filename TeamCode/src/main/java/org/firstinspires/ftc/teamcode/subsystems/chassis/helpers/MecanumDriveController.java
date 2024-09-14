@@ -8,14 +8,6 @@ public class MecanumDriveController extends MecanumDriveWheelSpeeds implements M
      * Calculations here:
      * https://gm0.org/en/latest/docs/software/concepts/kinematics.html#id3
      */
-    public MecanumDriveController(Pose2d vectorPosition){
-        super(
-                vectorPosition.getX() - vectorPosition.getY() - ( 2 * BASE_TRACK_RADIUS * vectorPosition.getHeading()),
-                vectorPosition.getX() + vectorPosition.getY() + ( 2 * BASE_TRACK_RADIUS * vectorPosition.getHeading()),
-                vectorPosition.getX() + vectorPosition.getY() - ( 2 * BASE_TRACK_RADIUS * vectorPosition.getHeading()),
-                vectorPosition.getX() - vectorPosition.getY() + ( 2 * BASE_TRACK_RADIUS * vectorPosition.getHeading())
-        );
-    }
     public MecanumDriveController(
             double xSpeed, double ySpeed, double zRotation
     ){

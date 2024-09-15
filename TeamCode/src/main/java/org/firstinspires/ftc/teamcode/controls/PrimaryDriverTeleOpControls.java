@@ -44,7 +44,7 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
 
         addBothSticksHandler(
                 (Double leftY, Double leftX, Double rightY, Double rightX) -> {
-                    chassis.drive(leftY, -leftX, -rightX);
+                    chassis.drive(leftY, -leftX, - rightX);
                     System.out.println("CHASSIS DRIVE " + "leftX " + leftY + " leftY " + leftX + " rightX " + rightX );
                 }
         );

@@ -18,7 +18,7 @@ public class Chassis extends VLRSubsystem<Chassis> implements ChassisConfigurati
     MotorEx MotorLeftBack;
     MotorEx MotorRightBack;
 
-    double motorPower = 0.0;
+    double motorPower = 1.0;
 
     @Override
     protected void initialize(HardwareMap hardwareMap) {
@@ -31,6 +31,9 @@ public class Chassis extends VLRSubsystem<Chassis> implements ChassisConfigurati
         MotorRightFront.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         MotorLeftBack.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
         MotorRightBack.setZeroPowerBehavior(Motor.ZeroPowerBehavior.BRAKE);
+
+        MotorRightBack.setInverted(true);
+        MotorRightFront.setInverted(true);
     }
 
     public void drive(Pose2d positionVector){

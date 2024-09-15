@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 public class StarterClaw extends VLRSubsystem<StarterClaw> implements StarterClawConfiguration{
     SimpleServo specimenServo;
     CRServo intakeServo;
+    boolean isTurned = false;
     @Override
     protected void initialize(HardwareMap hardwareMap) {
         specimenServo = new SimpleServo(hardwareMap, SPECIMEN_SERVO, MIN_SPECIMEN_SERVO_DEGREE, MAX_SPECIMEN_SERVO_DEGREE);
@@ -19,22 +20,26 @@ public class StarterClaw extends VLRSubsystem<StarterClaw> implements StarterCla
     }
 
     public void turn() {
-        specimenServo.turnToAngle(MAX_SPECIMEN_SERVO_DEGREE);
+        specimenServo.turnToAngle(SPECIMEN_SERVO_GRAB_POSITION);
     }
 
     public void revert() {
         specimenServo.turnToAngle(DEFAULT_SPECIMEN_SERVO_POSITION);
     }
 
-    public Boolean isTurned() {
-        return specimenServo.getAngle() == MAX_SPECIMEN_SERVO_DEGREE;
-    }
+//    public Boolean isTurned() {
+//        return specimenServo.getAngle() == MAX_SPECIMEN_SERVO_DEGREE;
+//    }
 
     public void toggleSpecimen() {
-        if(this.isTurned()) {
+        if(isTurned) {
             revert();
-        } else
+            isTurned = false;
+        } else{
+            isTurned = true;
             turn();
+        }
+
     }
 
     public void release() {

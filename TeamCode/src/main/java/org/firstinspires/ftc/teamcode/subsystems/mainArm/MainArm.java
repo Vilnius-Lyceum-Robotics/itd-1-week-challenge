@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode.subsystems.mainArm;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
 
+@Config
 public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfiguration{
     DcMotor armMotor;
     @Override
@@ -12,6 +14,7 @@ public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfigurati
         armMotor = hardwareMap.get(DcMotor.class, MOTOR);
         armMotor.setTargetPosition(ARM_COLLAPSED_INTO_ROBOT);
         armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
@@ -36,6 +39,7 @@ public class MainArm extends VLRSubsystem<MainArm> implements MainArmConfigurati
     }
 
     public void moveToDeg(double motorTargetDegrees){
+        System.out.println("ARM MOTOR MODE: " + armMotor.getMode());
         armMotor.setTargetPosition((int)motorTargetDegrees);
         armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         armMotor.setPower(MOTOR_POWER);

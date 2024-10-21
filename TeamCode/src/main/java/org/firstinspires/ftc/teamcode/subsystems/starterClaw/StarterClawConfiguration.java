@@ -7,7 +7,8 @@ public interface StarterClawConfiguration {
     String SPECIMEN_SERVO = "specimenServo";
     int MIN_SPECIMEN_SERVO_DEGREE = 0;
     int MAX_SPECIMEN_SERVO_DEGREE = 180;
-    int DEFAULT_SPECIMEN_SERVO_POSITION = 170;
+    int DEFAULT_SPECIMEN_SERVO_POSITION = 21;
+    int SPECIMEN_SERVO_GRAB_POSITION = 83;
 
     String INTAKE_CRSERVO = "intakeServo";
     double INTAKE_OFF = 0.0;

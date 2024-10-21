@@ -32,20 +32,16 @@ public class PrimaryDriverTeleOpControls extends DriverControls {
         MainArm mainArm = VLRSubsystem.getInstance(MainArm.class);
         Chassis chassis = VLRSubsystem.getInstance(Chassis.class);
 
-        add(new ButtonCtl(GamepadKeys.Button.A, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean a) -> starterClaw.toggleSpecimen()));
-        add(new ButtonCtl(GamepadKeys.Button.Y, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean y) -> cs.schedule(new StarterClawReleaseCommand())));
-        add(new ButtonCtl(GamepadKeys.Button.X, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean x) -> starterClaw.toggleIntakeLoad()));
-
-        add(new ButtonCtl(GamepadKeys.Button.RIGHT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean rb) -> mainArm.moveScoring()));
-        add(new ButtonCtl(GamepadKeys.Button.LEFT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean lb) ->  mainArm.moveClearBarrier()));
-        add(new ButtonCtl(GamepadKeys.Button.DPAD_DOWN, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean dp_d) -> mainArm.moveCollectSample()));
-        add(new ButtonCtl(GamepadKeys.Button.DPAD_LEFT, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean dp_l) -> mainArm.attachHook()));
-        add(new ButtonCtl(GamepadKeys.Button.DPAD_RIGHT, ButtonCtl.Trigger.WAS_JUST_PRESSED, true,(Boolean dp_r) -> mainArm.liftRobot()));
-
+//        add(new ButtonCtl(GamepadKeys.Button.A, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean a) -> starterClaw.toggleSpecimen()));
+//        add(new ButtonCtl(GamepadKeys.Button.Y, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean y) -> cs.schedule(new StarterClawReleaseCommand())));
+//        add(new ButtonCtl(GamepadKeys.Button.X, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean x) -> starterClaw.toggleIntakeLoad()));
+//        add(new ButtonCtl(GamepadKeys.Button.B, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean b) -> mainArm.changeDir()));
+//
+//        add(new ButtonCtl(GamepadKeys.Button.LEFT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean rb) -> mainArm.stdCyclePosition()));
+//        add(new ButtonCtl(GamepadKeys.Button.RIGHT_BUMPER, ButtonCtl.Trigger.WAS_JUST_PRESSED, true, (Boolean lb) -> mainArm.liftCyclePosition()));
         addBothSticksHandler(
                 (Double leftY, Double leftX, Double rightY, Double rightX) -> {
-                    chassis.drive(leftY, -leftX, - rightX);
-                    System.out.println("CHASSIS DRIVE " + "leftX " + leftY + " leftY " + leftX + " rightX " + rightX );
+                    chassis.drive(leftY, -leftX, -rightX);
                 }
         );
         // add(new TriggerCtl(GamepadKeys.Trigger.LEFT_TRIGGER, (Double lt) -> mainArm.finePositionAdjustment(lt)));

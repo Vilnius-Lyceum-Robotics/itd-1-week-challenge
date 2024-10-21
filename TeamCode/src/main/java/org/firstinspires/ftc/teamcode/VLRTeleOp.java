@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.controls.SecondaryDriverTeleOpControls;
 import org.firstinspires.ftc.teamcode.helpers.commands.CommandRunner;
 import org.firstinspires.ftc.teamcode.helpers.opmode.VLRLinearOpMode;
 import org.firstinspires.ftc.teamcode.helpers.subsystems.VLRSubsystem;
+import org.firstinspires.ftc.teamcode.subsystems.lift.Lift;
 import org.firstinspires.ftc.teamcode.subsystems.mainArm.MainArmConfiguration;
 import org.firstinspires.ftc.teamcode.subsystems.starterClaw.StarterClaw;
 import org.firstinspires.ftc.teamcode.subsystems.mainArm.MainArm;
@@ -32,7 +33,7 @@ public class VLRTeleOp extends VLRLinearOpMode {
 
     @Override
     public void run() {
-        VLRSubsystem.requireSubsystems(Chassis.class, StarterClaw.class, MainArm.class);
+        VLRSubsystem.requireSubsystems(Chassis.class); //StarterClaw.class, MainArm.class, Lift.class);
         VLRSubsystem.initializeAll(hardwareMap);
 
         executorService = Executors.newCachedThreadPool();
@@ -43,15 +44,17 @@ public class VLRTeleOp extends VLRLinearOpMode {
         primaryDriver = new PrimaryDriverTeleOpControls(gamepad1);
         secondaryDriver = new SecondaryDriverTeleOpControls(gamepad2);
 
-        MainArm ma = VLRSubsystem.getInstance(MainArm.class);
+//        MainArm ma = VLRSubsystem.getInstance(MainArm.class);
+//        Lift lift = VLRSubsystem.getInstance(Lift.class);
 
         waitForStart();
 
         while (opModeIsActive()) {
             primaryDriver.update();
             secondaryDriver.update();
-            telemetry.addData("arm encoder", ma.getEncoderValue());
-            telemetry.update();
+//            telemetry.addData("arm encoder", ma.getEncoderValue());
+//            telemetry.addData("lift encoder", lift.getEncoderValue());
+//            telemetry.update();
         }
     }
 }
